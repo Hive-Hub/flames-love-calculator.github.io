@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLAMES - Love Calculator</title>
+    
+    <!-- Open Graph Meta Tags for Instagram/Social Media -->
+    <meta property="og:title" content="FLAMES Love Calculator 💕">
+    <meta property="og:description" content="Discover your relationship destiny! Are you Friends, Lovers, or destined for Marriage?">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1200&h=630">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -18,7 +27,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
             overflow-x: hidden;
             position: relative;
         }
@@ -48,7 +57,7 @@
 
         .floating-heart {
             position: absolute;
-            font-size: 30px;
+            font-size: 25px;
             opacity: 0.3;
             animation: floatHeart 15s infinite;
         }
@@ -72,10 +81,10 @@
 
         .container {
             background: rgba(255, 255, 255, 0.98);
-            padding: 50px 40px;
-            border-radius: 40px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-            max-width: 550px;
+            padding: 30px 25px;
+            border-radius: 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 420px;
             width: 100%;
             backdrop-filter: blur(10px);
             animation: fadeIn 0.8s ease;
@@ -87,7 +96,7 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(-30px) scale(0.9);
+                transform: translateY(-30px) scale(0.95);
             }
             to {
                 opacity: 1;
@@ -97,11 +106,11 @@
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
 
         .heart-icon {
-            font-size: 4em;
+            font-size: 3.5em;
             animation: heartbeat 1.5s infinite;
             filter: drop-shadow(0 4px 8px rgba(255, 107, 157, 0.5));
         }
@@ -129,16 +138,16 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-size: 3em;
-            margin: 15px 0 10px 0;
+            font-size: 2.5em;
+            margin: 12px 0 8px 0;
             font-weight: bold;
             letter-spacing: 2px;
         }
 
         .subtitle {
             color: #ff6b9d;
-            font-size: 1.1em;
-            margin-top: 10px;
+            font-size: 1em;
+            margin-top: 8px;
             font-style: italic;
             font-family: 'Georgia', serif;
         }
@@ -146,11 +155,11 @@
         .divider {
             height: 2px;
             background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
-            margin: 25px 0;
+            margin: 20px 0;
         }
 
         .input-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
         }
 
@@ -158,23 +167,23 @@
             display: block;
             color: #c06c84;
             font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1em;
+            margin-bottom: 8px;
+            font-size: 0.95em;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         label::before {
             content: '💗';
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
 
         input {
             width: 100%;
-            padding: 18px 25px;
+            padding: 16px 20px;
             border: 3px solid #ffe0e9;
-            border-radius: 25px;
+            border-radius: 20px;
             font-size: 16px;
             transition: all 0.3s ease;
             background: #fff5f7;
@@ -190,18 +199,18 @@
             outline: none;
             border-color: #ff6b9d;
             background: white;
-            box-shadow: 0 0 0 5px rgba(255, 107, 157, 0.15);
+            box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.15);
             transform: translateY(-2px);
         }
 
         .btn {
             width: 100%;
-            padding: 20px;
+            padding: 18px;
             background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
             color: white;
             border: none;
-            border-radius: 30px;
-            font-size: 20px;
+            border-radius: 25px;
+            font-size: 18px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -210,36 +219,32 @@
             letter-spacing: 1px;
             position: relative;
             overflow: hidden;
+            touch-action: manipulation;
         }
 
         .btn::before {
             content: '💕';
             position: absolute;
-            left: 20px;
-            font-size: 1.5em;
+            left: 15px;
+            font-size: 1.3em;
         }
 
         .btn::after {
             content: '💕';
             position: absolute;
-            right: 20px;
-            font-size: 1.5em;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.7);
+            right: 15px;
+            font-size: 1.3em;
         }
 
         .btn:active {
-            transform: translateY(0);
+            transform: scale(0.98);
         }
 
         .result {
-            margin-top: 35px;
-            padding: 35px;
+            margin-top: 25px;
+            padding: 30px 25px;
             background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
-            border-radius: 30px;
+            border-radius: 25px;
             text-align: center;
             animation: slideUp 0.6s ease;
             display: none;
@@ -263,8 +268,8 @@
         }
 
         .result-letter {
-            font-size: 5em;
-            margin-bottom: 15px;
+            font-size: 4em;
+            margin-bottom: 12px;
             animation: bounce 0.6s ease;
             filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
         }
@@ -275,7 +280,7 @@
         }
 
         .result-text {
-            font-size: 2em;
+            font-size: 1.8em;
             color: white;
             font-weight: bold;
             margin-bottom: 10px;
@@ -285,26 +290,26 @@
 
         .result-description {
             color: rgba(255, 255, 255, 0.95);
-            font-size: 1.05em;
-            line-height: 1.6;
+            font-size: 0.95em;
+            line-height: 1.5;
             font-style: italic;
             font-family: 'Georgia', serif;
         }
 
         .flames-legend {
-            margin-top: 30px;
-            padding: 25px;
+            margin-top: 25px;
+            padding: 20px;
             background: linear-gradient(135deg, #fff5f7 0%, #ffe0e9 100%);
-            border-radius: 25px;
-            font-size: 0.9em;
+            border-radius: 20px;
+            font-size: 0.85em;
             color: #c06c84;
             border: 2px solid #ffb3c6;
         }
 
         .flames-legend h3 {
             color: #ff6b9d;
-            margin-bottom: 15px;
-            font-size: 1.3em;
+            margin-bottom: 12px;
+            font-size: 1.2em;
             text-align: center;
             font-family: 'Georgia', serif;
         }
@@ -314,30 +319,142 @@
         }
 
         .flames-legend li {
-            margin: 10px 0;
-            padding: 10px 15px;
+            margin: 8px 0;
+            padding: 8px 12px;
             position: relative;
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             transition: all 0.3s ease;
+            font-size: 0.9em;
         }
 
-        .flames-legend li:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        .flames-legend li:active {
+            transform: scale(0.98);
         }
 
         .flames-legend li::before {
             content: "💖";
             position: absolute;
             left: -5px;
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
 
         .flames-legend li strong {
             color: #ff6b9d;
-            font-size: 1.1em;
+            font-size: 1.05em;
             margin-right: 5px;
+        }
+
+        .github-banner {
+            background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+            padding: 18px;
+            border-radius: 20px;
+            margin-top: 25px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid #444;
+        }
+
+        .github-banner h3 {
+            font-size: 1.15em;
+            margin-bottom: 12px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .github-banner p {
+            color: #ddd;
+            margin-bottom: 12px;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .github-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .github-btn {
+            padding: 12px 20px;
+            background: #238636;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9em;
+            box-shadow: 0 4px 12px rgba(35, 134, 54, 0.4);
+            touch-action: manipulation;
+        }
+
+        .github-btn:active {
+            transform: scale(0.98);
+        }
+
+        .github-btn.follow {
+            background: #1f6feb;
+            box-shadow: 0 4px 12px rgba(31, 111, 235, 0.4);
+        }
+
+        .share-section {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 20px rgba(131, 58, 180, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .share-section h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .share-section p {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .share-btn {
+            width: 100%;
+            padding: 14px;
+            background: white;
+            color: #833ab4;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Georgia', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            touch-action: manipulation;
+        }
+
+        .share-btn:active {
+            transform: scale(0.98);
         }
 
         .particles {
@@ -352,7 +469,7 @@
 
         .particle {
             position: absolute;
-            font-size: 25px;
+            font-size: 22px;
             animation: float 4s infinite;
         }
 
@@ -375,100 +492,68 @@
 
         .rose-decoration {
             position: absolute;
-            font-size: 40px;
-            opacity: 0.15;
+            font-size: 30px;
+            opacity: 0.12;
             pointer-events: none;
         }
 
         .rose-top-left {
-            top: -20px;
-            left: -20px;
+            top: -15px;
+            left: -15px;
             transform: rotate(-15deg);
         }
 
         .rose-top-right {
-            top: -20px;
-            right: -20px;
+            top: -15px;
+            right: -15px;
             transform: rotate(15deg);
         }
 
         .rose-bottom-left {
-            bottom: -20px;
-            left: -20px;
+            bottom: -15px;
+            left: -15px;
             transform: rotate(15deg);
         }
 
         .rose-bottom-right {
-            bottom: -20px;
-            right: -20px;
+            bottom: -15px;
+            right: -15px;
             transform: rotate(-15deg);
         }
 
-        .github-banner {
-            background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
-            padding: 20px;
-            border-radius: 20px;
-            margin-top: 30px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            border: 2px solid #444;
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 20px;
+                border-radius: 30px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .heart-icon {
+                font-size: 3em;
+            }
+
+            .github-links {
+                flex-direction: column;
+            }
+
+            input {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
         }
 
-        .github-banner h3 {
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
+        /* Instagram Story optimized view */
+        @media (max-width: 414px) and (min-height: 700px) {
+            body {
+                padding: 10px;
+            }
 
-        .github-banner p {
-            color: #ddd;
-            margin-bottom: 15px;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-
-        .github-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        .github-btn {
-            padding: 12px 25px;
-            background: #238636;
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9em;
-            box-shadow: 0 4px 12px rgba(35, 134, 54, 0.4);
-        }
-
-        .github-btn:hover {
-            background: #2ea043;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(35, 134, 54, 0.6);
-        }
-
-        .github-btn.follow {
-            background: #1f6feb;
-            box-shadow: 0 4px 12px rgba(31, 111, 235, 0.4);
-        }
-
-        .github-btn.follow:hover {
-            background: #388bfd;
-            box-shadow: 0 6px 16px rgba(31, 111, 235, 0.6);
+            .container {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -520,9 +605,17 @@
             </ul>
         </div>
 
+        <div class="share-section">
+            <h3>📱 Share on Instagram</h3>
+            <p>Screenshot this result and share your destiny with friends!</p>
+            <button class="share-btn" onclick="shareToInstagram()">
+                📸 Take Screenshot & Share
+            </button>
+        </div>
+
         <div class="github-banner">
             <h3>⭐ Love This Project? ⭐</h3>
-            <p>💖 Follow me on GitHub and join my organization to stay updated with more amazing projects!</p>
+            <p>💖 Follow me on GitHub and join my organization!</p>
             <div class="github-links">
                 <a href="https://github.com/Hive-Hub" target="_blank" class="github-btn follow">
                     👤 Follow on GitHub
@@ -531,7 +624,7 @@
                     🏢 Join Organization
                 </a>
             </div>
-            <p style="margin-top: 15px; font-size: 0.85em; color: #aaa;">⭐ Don't forget to star the repository!</p>
+            <p style="margin-top: 12px; font-size: 0.8em; color: #aaa;">⭐ Don't forget to star the repository!</p>
         </div>
     </div>
 
@@ -622,7 +715,7 @@
             const particlesContainer = document.getElementById('particles');
             const emojis = ['❤️', '💕', '💖', '💗', '💓', '💝', '💘', '🌹', '💐', '✨'];
             
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 15; i++) {
                 setTimeout(() => {
                     const particle = document.createElement('div');
                     particle.className = 'particle';
@@ -643,7 +736,7 @@
             const container = document.getElementById('floatingHearts');
             const hearts = ['❤️', '💕', '💖', '💗', '🌹'];
             
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 8; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'floating-heart';
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
@@ -651,6 +744,20 @@
                 heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
                 heart.style.animationDelay = Math.random() * 5 + 's';
                 container.appendChild(heart);
+            }
+        }
+
+        function shareToInstagram() {
+            // Guide users to take a screenshot
+            alert('📸 To share on Instagram:\n\n1. Take a screenshot of your result\n2. Open Instagram app\n3. Create a new Story or Post\n4. Upload your screenshot\n5. Tag your friends!\n\n💕 Share the love!');
+            
+            // If on mobile, try to use Web Share API
+            if (navigator.share) {
+                navigator.share({
+                    title: 'FLAMES Love Calculator',
+                    text: 'Check out my FLAMES result! 💕',
+                    url: window.location.href
+                }).catch(err => console.log('Share cancelled'));
             }
         }
 
@@ -667,6 +774,16 @@
                 calculateFlames();
             }
         });
+
+        // Prevent zoom on double tap for iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
