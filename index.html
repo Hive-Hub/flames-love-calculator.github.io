@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLAMES - Love Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #f67280 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.3;
+            animation: floatHeart 15s infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 50px 40px;
+            border-radius: 40px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            max-width: 550px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.8s ease;
+            position: relative;
+            z-index: 2;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .heart-icon {
+            font-size: 4em;
+            animation: heartbeat 1.5s infinite;
+            filter: drop-shadow(0 4px 8px rgba(255, 107, 157, 0.5));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { 
+                transform: scale(1); 
+            }
+            10% { 
+                transform: scale(1.15); 
+            }
+            20% { 
+                transform: scale(1); 
+            }
+            30% { 
+                transform: scale(1.15); 
+            }
+            40% { 
+                transform: scale(1); 
+            }
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3em;
+            margin: 15px 0 10px 0;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #ff6b9d;
+            font-size: 1.1em;
+            margin-top: 10px;
+            font-style: italic;
+            font-family: 'Georgia', serif;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+            margin: 25px 0;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            color: #c06c84;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        label::before {
+            content: '💗';
+            font-size: 1.2em;
+        }
+
+        input {
+            width: 100%;
+            padding: 18px 25px;
+            border: 3px solid #ffe0e9;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fff5f7;
+            color: #c06c84;
+            font-family: 'Georgia', serif;
+        }
+
+        input::placeholder {
+            color: #ffb3c6;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ff6b9d;
+            background: white;
+            box-shadow: 0 0 0 5px rgba(255, 107, 157, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+            font-family: 'Georgia', serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '💕';
+            position: absolute;
+            left: 20px;
+            font-size: 1.5em;
+        }
+
+        .btn::after {
+            content: '💕';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5em;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.7);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            margin-top: 35px;
+            padding: 35px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            border-radius: 30px;
+            text-align: center;
+            animation: slideUp 0.6s ease;
+            display: none;
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result-letter {
+            font-size: 5em;
+            margin-bottom: 15px;
+            animation: bounce 0.6s ease;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .result-text {
+            font-size: 2em;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            font-family: 'Georgia', serif;
+        }
+
+        .result-description {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.05em;
+            line-height: 1.6;
+            font-style: italic;
+            font-family: 'Georgia', serif;
+        }
+
+        .flames-legend {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe0e9 100%);
+            border-radius: 25px;
+            font-size: 0.9em;
+            color: #c06c84;
+            border: 2px solid #ffb3c6;
+        }
+
+        .flames-legend h3 {
+            color: #ff6b9d;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-align: center;
+            font-family: 'Georgia', serif;
+        }
+
+        .flames-legend ul {
+            list-style: none;
+        }
+
+        .flames-legend li {
+            margin: 10px 0;
+            padding: 10px 15px;
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .flames-legend li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .flames-legend li::before {
+            content: "💖";
+            position: absolute;
+            left: -5px;
+            font-size: 1.2em;
+        }
+
+        .flames-legend li strong {
+            color: #ff6b9d;
+            font-size: 1.1em;
+            margin-right: 5px;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 25px;
+            animation: float 4s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .rose-decoration {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .rose-top-left {
+            top: -20px;
+            left: -20px;
+            transform: rotate(-15deg);
+        }
+
+        .rose-top-right {
+            top: -20px;
+            right: -20px;
+            transform: rotate(15deg);
+        }
+
+        .rose-bottom-left {
+            bottom: -20px;
+            left: -20px;
+            transform: rotate(15deg);
+        }
+
+        .rose-bottom-right {
+            bottom: -20px;
+            right: -20px;
+            transform: rotate(-15deg);
+        }
+
+        .github-banner {
+            background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 30px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid #444;
+        }
+
+        .github-banner h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .github-banner p {
+            color: #ddd;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .github-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .github-btn {
+            padding: 12px 25px;
+            background: #238636;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            box-shadow: 0 4px 12px rgba(35, 134, 54, 0.4);
+        }
+
+        .github-btn:hover {
+            background: #2ea043;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(35, 134, 54, 0.6);
+        }
+
+        .github-btn.follow {
+            background: #1f6feb;
+            box-shadow: 0 4px 12px rgba(31, 111, 235, 0.4);
+        }
+
+        .github-btn.follow:hover {
+            background: #388bfd;
+            box-shadow: 0 6px 16px rgba(31, 111, 235, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="rose-decoration rose-top-left">🌹</div>
+        <div class="rose-decoration rose-top-right">🌹</div>
+        <div class="rose-decoration rose-bottom-left">🌹</div>
+        <div class="rose-decoration rose-bottom-right">🌹</div>
+
+        <div class="header">
+            <div class="heart-icon">💝</div>
+            <h1>FLAMES</h1>
+            <p class="subtitle">✨ Discover the magic of your hearts ✨</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="input-group">
+            <label for="name1">Your Name</label>
+            <input type="text" id="name1" placeholder="Enter your name..." autocomplete="off">
+        </div>
+
+        <div class="input-group">
+            <label for="name2">Their Name</label>
+            <input type="text" id="name2" placeholder="Enter their name..." autocomplete="off">
+        </div>
+
+        <button class="btn" onclick="calculateFlames()">Calculate Our Destiny</button>
+
+        <div class="result" id="result">
+            <div class="result-letter" id="resultLetter"></div>
+            <div class="result-text" id="resultText"></div>
+            <div class="result-description" id="resultDescription"></div>
+        </div>
+
+        <div class="flames-legend">
+            <h3>💕 FLAMES Meanings 💕</h3>
+            <ul>
+                <li><strong>F</strong> - Friends Forever</li>
+                <li><strong>L</strong> - Love Birds</li>
+                <li><strong>A</strong> - Affectionate Souls</li>
+                <li><strong>M</strong> - Marriage Destined</li>
+                <li><strong>E</strong> - Eternal Rivals</li>
+                <li><strong>S</strong> - Sibling Hearts</li>
+            </ul>
+        </div>
+
+        <div class="github-banner">
+            <h3>⭐ Love This Project? ⭐</h3>
+            <p>💖 Follow me on GitHub and join my organization to stay updated with more amazing projects!</p>
+            <div class="github-links">
+                <a href="https://github.com/Hive-Hub" target="_blank" class="github-btn follow">
+                    👤 Follow on GitHub
+                </a>
+                <a href="https://github.com/TheHackerNest" target="_blank" class="github-btn">
+                    🏢 Join Organization
+                </a>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.85em; color: #aaa;">⭐ Don't forget to star the repository!</p>
+        </div>
+    </div>
+
+    <script>
+        const flamesData = {
+            'F': {
+                text: 'Friends Forever',
+                description: 'Your bond is pure and beautiful. True friendship is the foundation of all great relationships. 💫',
+                emoji: '👫'
+            },
+            'L': {
+                text: 'Love Birds',
+                description: 'Cupid has struck! Your hearts beat as one. This is a love written in the stars. 💘',
+                emoji: '💖'
+            },
+            'A': {
+                text: 'Affectionate Souls',
+                description: 'Sweet affection flows between you. Your caring nature creates a warm and tender bond. 🌸',
+                emoji: '💕'
+            },
+            'M': {
+                text: 'Marriage Destined',
+                description: 'Wedding bells are ringing! The universe has aligned your paths toward forever. 💒',
+                emoji: '💍'
+            },
+            'E': {
+                text: 'Eternal Rivals',
+                description: 'Sparks fly when you\'re together! Sometimes the strongest connections start with conflict. ⚡',
+                emoji: '⚔️'
+            },
+            'S': {
+                text: 'Sibling Hearts',
+                description: 'Your bond is like family - unconditional, protective, and filled with endless memories. 👨‍👩‍👧‍👦',
+                emoji: '🤗'
+            }
+        };
+
+        function calculateFlames() {
+            const name1 = document.getElementById('name1').value.toLowerCase().replace(/\s/g, '');
+            const name2 = document.getElementById('name2').value.toLowerCase().replace(/\s/g, '');
+
+            if (!name1 || !name2) {
+                alert('💔 Please enter both names to discover your destiny!');
+                return;
+            }
+
+            let str1 = name1;
+            let str2 = name2;
+
+            for (let char of str1) {
+                if (str2.includes(char)) {
+                    str1 = str1.replace(char, '');
+                    str2 = str2.replace(char, '');
+                }
+            }
+
+            const totalLength = str1.length + str2.length;
+            const flames = ['F', 'L', 'A', 'M', 'E', 'S'];
+            let index = 0;
+
+            while (flames.length > 1) {
+                index = (index + totalLength - 1) % flames.length;
+                flames.splice(index, 1);
+            }
+
+            const result = flames[0];
+            showResult(result);
+            createParticles();
+        }
+
+        function showResult(letter) {
+            const resultDiv = document.getElementById('result');
+            const resultLetter = document.getElementById('resultLetter');
+            const resultText = document.getElementById('resultText');
+            const resultDescription = document.getElementById('resultDescription');
+
+            const data = flamesData[letter];
+            
+            resultLetter.textContent = data.emoji;
+            resultText.textContent = data.text;
+            resultDescription.textContent = data.description;
+            
+            resultDiv.classList.add('show');
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const emojis = ['❤️', '💕', '💖', '💗', '💓', '💝', '💘', '🌹', '💐', '✨'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    particlesContainer.appendChild(particle);
+
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 6000);
+                }, i * 100);
+            }
+        }
+
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['❤️', '💕', '💖', '💗', '🌹'];
+            
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        createFloatingHearts();
+
+        document.getElementById('name1').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('name2').focus();
+            }
+        });
+
+        document.getElementById('name2').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateFlames();
+            }
+        });
+    </script>
+</body>
+</html>
